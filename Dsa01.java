@@ -9,6 +9,9 @@ public class Dsa01 {
         loop(2);
     }
 
+
+    //funtion:- function are a piece of code used to use again and again without repeating the code at 10 places 
+    
     //use case of input and output in java with the help of Scanner class(input) and System class(output)
     static void display(){
         Scanner sc = new Scanner(System.in);
@@ -35,6 +38,7 @@ public class Dsa01 {
         else System.out.println("failed");
     }
 
+    //use case of for loop and while loop
     static void loop(int n){
         for (int index = 1; index <= 10; index++) {
             int result = n*index;
