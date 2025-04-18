@@ -7,8 +7,9 @@ public class ArrayPractice {
         // brutefindtheLargestElementFromArray(arr1);
         // betterfindtheLargestElementFromArray(arr1);
 
-        brutefindSecondLargestElement(arr1);
-        betterFindSecondLargestElement(arr1);
+        // brutefindSecondLargestElement(arr1);
+        // betterFindSecondLargestElement(arr1);
+        brutecheckArrayIsSort(arr1);
     }
 
     static void swap(int[] arr, int left, int rigth) {
@@ -63,5 +64,23 @@ public class ArrayPractice {
             }
         }
         System.out.println(sLargest);
+    }
+    static boolean brutecheckArrayIsSort(int [] arr){
+        for (int i=0; i<arr.length; i++){
+            for (int j=0; j<arr.length; j++){
+                if (arr[j] < arr[i]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    static boolean bettercheckArrayIsSort(int [] arr){
+        for (int i=1; i<arr.length; i++){
+            if (arr[i] < arr[i-1]) {
+                return false;
+            }        
+        }
+        return true;
     }
 }
