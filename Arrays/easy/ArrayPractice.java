@@ -12,6 +12,11 @@ public class ArrayPractice {
         brutecheckArrayIsSort(arr1);
     }
 
+    static boolean isRotated (int [] arr, int left, int right){
+        int start = left;
+        int right = 
+    }
+
     static void swap(int[] arr, int left, int rigth) {
         int temp = arr[left];
         arr[left] = arr[rigth];
@@ -82,5 +87,20 @@ public class ArrayPractice {
             }        
         }
         return true;
+    }
+    static boolean bettercheckArrayIsSortAndRotated(int [] arr){  
+        int count = 0; 
+
+        for(int i = 0; i< arr.length-1; i++){
+            if(arr[i]>arr[i+1]){
+                count++;
+            }
+        }
+
+        if(arr[0]<arr[arr.length-1]){
+            count++;
+        }
+
+        return count <=1;
     }
 }
