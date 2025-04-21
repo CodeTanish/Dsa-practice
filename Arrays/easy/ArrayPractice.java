@@ -1,20 +1,28 @@
 package Arrays.easy;
 
+import java.util.ArrayList;
+import java.util.*;
+
 public class ArrayPractice {
     public static void main(String[] args) {
-        int[] arr1 = { 2, 5, 1, 3, 0 };
+
+        // int [] arr1 = {2, 5, 1, 3, 0};
+        // int [] arr2 = {1,1,2,2,2,3,3,3,3};
+        // int [] arr3 = {2,0,3,0,1,1,0,4,0};
+        int [] arr4 = {1,1,0,0,0,1,1,1,1,1};
 
         // brutefindtheLargestElementFromArray(arr1);
         // betterfindtheLargestElementFromArray(arr1);
 
         // brutefindSecondLargestElement(arr1);
         // betterFindSecondLargestElement(arr1);
-        brutecheckArrayIsSort(arr1);
-    }
 
-    static boolean isRotated (int [] arr, int left, int right){
-        int start = left;
-        int right = 
+        // bruteCheckArrayIsSort(arr2);
+        // betterCheckArrayIsSort(arr2);
+
+        // rotateArrayByOnePlace(arr1);
+        // bruteMoveZeroToLast(arr3);
+        System.out.println(maxConsecutiveOnes(arr4));
     }
 
     static void swap(int[] arr, int left, int rigth) {
@@ -70,7 +78,8 @@ public class ArrayPractice {
         }
         System.out.println(sLargest);
     }
-    static boolean brutecheckArrayIsSort(int [] arr){
+    
+    static boolean bruteCheckArrayIsSort(int [] arr){
         for (int i=0; i<arr.length; i++){
             for (int j=i+1; j<arr.length; j++){
                 if (arr[j] < arr[i]) {
@@ -80,7 +89,8 @@ public class ArrayPractice {
         }
         return true;
     }
-    static boolean bettercheckArrayIsSort(int [] arr){
+    
+    static boolean betterCheckArrayIsSort(int [] arr){
         for (int i=1; i<arr.length; i++){
             if (arr[i] < arr[i-1]) {
                 return false;
@@ -88,7 +98,9 @@ public class ArrayPractice {
         }
         return true;
     }
-    static boolean bettercheckArrayIsSortAndRotated(int [] arr){  
+    
+    //leetcode question
+    static boolean betterCheckArrayIsSortAndRotated(int [] arr){  
         int count = 0; 
 
         for(int i = 0; i< arr.length-1; i++){
@@ -102,5 +114,189 @@ public class ArrayPractice {
         }
 
         return count <=1;
+    }
+
+    static ArrayList<Integer> bruteRemoveDuplicate(int [] arr){
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(arr[0]);
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i+1; j < arr.length; j++) {
+                if (arr[i] != arr[j] && !list.contains(arr[j])) {
+                    list.add(arr[j]);
+                }
+            }
+        }
+        return list;
+    }
+
+    static ArrayList<Integer> betterRemoveDuplicate(int [] arr){
+        ArrayList<Integer> list = new ArrayList<>();
+
+        for(int i = 0; i<arr.length; i++){
+            if (!list.contains(arr[i])) {
+                list.add(arr[i]);
+            }
+        }
+
+        return list;
+    }
+
+    static List<Integer> optimalRemoveDuplicate(int [] arr){
+        LinkedHashSet <Integer> list = new LinkedHashSet<>();
+
+        for (int val: list) {
+            list.add(val);
+        }
+
+        return new ArrayList<>(list);
+    }
+
+    static int bruteFindTheNumberWhichOccuredMost (int [] arr){
+
+        int max = Integer.MIN_VALUE;
+
+        for(int val: arr){
+            if(val > max) max = val;
+        }
+
+        int [] count = new int[max+1]; 
+        for (int i = 0; i < arr.length; i++) {
+           count[arr[i]] += 1;
+        }
+
+        int maxCount = 0, frequency = -1;
+        for (int i = 0; i < count.length; i++) {
+            if (count[i] > maxCount) {
+                maxCount = count[i];
+                frequency = i;
+            }
+        }
+        return frequency;
+    }
+
+    static int optimalFindMaxhichOccuredMost(int [] arr){
+
+        int frequency = 0, maxValue = arr[0];
+
+        HashMap <Integer, Integer> map = new HashMap<>();
+
+        for (int val: arr) {
+            map.put(val, map.getOrDefault(val, 0)+1);
+        }
+
+        for (Map.Entry <Integer, Integer> entry : map.entrySet()){
+            if (entry.getValue() > maxValue) {
+                maxValue = entry.getValue();
+                frequency = entry.getKey();
+            }
+        }
+
+        return frequency;
+    }
+
+    static void display (int [] arr){
+        for (int val: arr){
+            System.out.print(val+ " ");
+        }
+    }
+
+    static void rotateArrayByOnePlace (int [] arr){
+
+        int temp = arr[0];
+
+        for (int i=1; i<arr.length; i++){
+            arr[i-1] = arr[i];
+        }
+        arr[arr.length - 1] = temp;
+
+        display(arr);
+    }
+
+    static void bruteMoveZeroToLast(int [] arr){
+        int count = 0, j = 0;
+        for (int val: arr){
+            if (val == 0) {
+                count++;
+            }
+        }
+        int [] newArray = new int[arr.length]; 
+
+        for(int i = 0; i<arr.length; i++){
+            if (arr[i] != 0) {
+                newArray[j] = arr[i];
+                j++;
+            }
+        }
+
+        for (int k = arr.length - count; k<newArray.length; k++){
+            newArray[k] = 0;
+        }
+
+        display(newArray);
+
+    }
+    
+    static void moveZeroToLast(int [] arr){
+        int index = 0;
+        for (int i=0; i<arr.length-1; i++){
+            if (arr[i] != 0){
+                swap(arr, i, index);
+                index++;
+            }
+        }
+
+        display(arr);
+    }
+
+    static ArrayList<Integer> unionOfSortedElement(int [] arr1, int [] arr2){
+
+        int size1 = arr1.length, size2 = arr2.length, i=0, j=0;
+
+        ArrayList<Integer> list = new ArrayList<>();
+
+        while (i < size1 && j < size2){
+            if (arr1[i] <= arr2[j]) {
+                if (list.size() == 0 || list.get(list.size()-1) != arr1[i]) {
+                    list.add(arr1[i]);
+                    i++;
+                }else {
+                    if (list.size() == 0 || list.get(list.size()-1) != arr1[j]) {
+                        list.add(arr2[j]);
+                        j++;
+                    }
+                }
+            }
+        }
+        while (i < size1) {
+            if (list.get(list.size()-1) != arr1[i]) {
+                list.add(arr1[i]);
+                i++;
+            }
+        }
+        while (j < size2) {
+            if (list.get(list.size()-1) != arr2[j]) {
+                list.add(arr2[j]);
+                j++;
+            }
+        }
+
+        return list;
+    }
+
+    static int maxConsecutiveOnes (int [] arr){
+
+        int count = 0, prevCount = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            if(arr[i] == 1){
+                count++;
+                prevCount = Math.max(prevCount, count);
+            } 
+            else {
+                count = 0;
+            }
+        }
+
+        return prevCount;
     }
 }
