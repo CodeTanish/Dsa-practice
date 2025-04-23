@@ -345,4 +345,30 @@ public class ArrayPractice {
         }
         return -1;
     }
+
+    static int stockBuyAndSell(int [] arr){
+
+        int min = Integer.MAX_VALUE;
+        int maxProfit = 0;
+
+        for (int price : arr){
+            if (price < min){
+                min = price;
+            }else if (price - min > maxProfit){
+                maxProfit = price - min;
+            }
+        }
+
+        return maxProfit;
+    }
+
+    static int optimalStockBuyAndSell (int [] arr){
+
+        int maxProfit = 0, min = Integer.MAX_VALUE;
+        for (int price : arr){
+            min = Math.min(min, price);
+            maxProfit = Math.max(maxProfit, price - min);
+        }
+        return maxProfit;
+    }
 }
