@@ -1,6 +1,5 @@
 package Arrays.easy;
 
-import java.util.ArrayList;
 import java.util.*;
 
 public class ArrayPractice {
@@ -30,6 +29,22 @@ public class ArrayPractice {
         arr[left] = arr[rigth];
         arr[rigth] = temp;
     }
+
+    static void display (int [] arr){
+        for (int val: arr){
+            System.out.print(val+ " ");
+        }
+    }
+
+    static int search(int[] arr, int target) {
+        for (int i = 0; i < arr.length; i++) { 
+            if (arr[i] == target) { 
+                return i;  
+            }
+        }
+        return -1; 
+    }
+    
 
     static void brutefindtheLargestElementFromArray(int[] arr) {
 
@@ -194,11 +209,6 @@ public class ArrayPractice {
         return frequency;
     }
 
-    static void display (int [] arr){
-        for (int val: arr){
-            System.out.print(val+ " ");
-        }
-    }
 
     static void rotateArrayByOnePlace (int [] arr){
 
@@ -298,5 +308,41 @@ public class ArrayPractice {
         }
 
         return prevCount;
+    }
+
+    //need to fix logic of this code 
+    // static int longestSubarray(int [] arr, int target){
+        
+    //     ArrayList<Integer> list = new ArrayList<>();
+        
+    //     for(int i=0; i<arr.length-1; i++){
+    //         for(int j = 0; j<arr.length - 1; j++){
+    //             if (target != arr[i] + arr[j]) list.add(arr[j]);
+    //         }
+    //     }
+    //     int length = list.size();
+    //     return length;
+    // }
+
+    static int majorityElement (int [] arr){
+        
+        int max = arr[0];
+
+        for (int val : arr){
+            if(max < val) max = val;
+        }
+
+        int [] count = new int[max+1];
+
+        for(int val: arr){
+            count[val]++;
+        }
+
+        for (int i = 0; i < count.length; i++) {
+            if (count[i] > arr.length / 2) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
