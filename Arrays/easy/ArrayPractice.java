@@ -21,7 +21,9 @@ public class ArrayPractice {
 
         // rotateArrayByOnePlace(arr1);
         // bruteMoveZeroToLast(arr3);
-        System.out.println(maxConsecutiveOnes(arr4));
+        int [] arr5 = {1,1,2};
+        System.out.println(mostOptimalSolutionRemoveDuplicate(arr5));
+        // System.out.println(maxConsecutiveOnes(arr4));
     }
 
     static void swap(int[] arr, int left, int rigth) {
@@ -131,39 +133,50 @@ public class ArrayPractice {
         return count <=1;
     }
 
-    static ArrayList<Integer> bruteRemoveDuplicate(int [] arr){
+    static ArrayList<Integer> bruteRemoveDuplicate(int[] arr) {
         ArrayList<Integer> list = new ArrayList<>();
-        list.add(arr[0]);
         for (int i = 0; i < arr.length; i++) {
-            for (int j = i+1; j < arr.length; j++) {
-                if (arr[i] != arr[j] && !list.contains(arr[j])) {
-                    list.add(arr[j]);
+            boolean isDuplicate = false;
+            for (int j = 0; j < i; j++) {
+                if (arr[i] == arr[j]) {
+                    isDuplicate = true;
+                    break;
                 }
             }
-        }
-        return list;
-    }
-
-    static ArrayList<Integer> betterRemoveDuplicate(int [] arr){
-        ArrayList<Integer> list = new ArrayList<>();
-
-        for(int i = 0; i<arr.length; i++){
-            if (!list.contains(arr[i])) {
+            if (!isDuplicate) {
                 list.add(arr[i]);
             }
         }
-
         return list;
     }
 
-    static List<Integer> optimalRemoveDuplicate(int [] arr){
-        LinkedHashSet <Integer> list = new LinkedHashSet<>();
-
-        for (int val: list) {
-            list.add(val);
+    static ArrayList<Integer> betterRemoveDuplicate(int[] arr) {
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int value : arr) {
+            if (!list.contains(value)) {
+                list.add(value);
+            }
         }
-
-        return new ArrayList<>(list);
+        return list;
+    }
+  
+    static int mostOptimalSolutionRemoveDuplicate (int [] arr){
+        int i = 0;
+        for(int j = 0; j<arr.length; j++){
+            if(arr[i] != arr[j]){
+                i++;
+                arr[i] = arr[j];
+            }
+        }
+        return i+1;
+    } 
+    
+    static List<Integer> optimalRemoveDuplicate(int[] arr) {
+        HashSet<Integer> set = new HashSet<>();
+        for (int value : arr) {
+            set.add(value);
+        }
+        return new ArrayList<>(set);    
     }
 
     static int bruteFindTheNumberWhichOccuredMost (int [] arr){
@@ -208,7 +221,6 @@ public class ArrayPractice {
 
         return frequency;
     }
-
 
     static void rotateArrayByOnePlace (int [] arr){
 
@@ -370,5 +382,24 @@ public class ArrayPractice {
             maxProfit = Math.max(maxProfit, price - min);
         }
         return maxProfit;
+    }
+
+    static void sortZerosOnesAndTwos(int [] arr){
+        int count_0 = 0, count_1 = 0, count_2 = 0;
+        for (int val: arr){
+            if(val == 0)count_0++;
+            if(val == 1)count_1++;
+            if(val == 2)count_2++;
+        }
+
+        for(int i = 0; i<count_0; i++){
+            arr[i] = 0;
+        }
+        for(int i = count_0; i<count_1; i++){
+            arr[i] = 0;
+        }
+        for(int i = count_0 + count_1; i<count_2; i++){
+            arr[i] = 0;
+        }
     }
 }
