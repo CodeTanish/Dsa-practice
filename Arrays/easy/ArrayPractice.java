@@ -396,10 +396,36 @@ public class ArrayPractice {
             arr[i] = 0;
         }
         for(int i = count_0; i<count_1; i++){
-            arr[i] = 0;
+            arr[i] = 1;
         }
         for(int i = count_0 + count_1; i<count_2; i++){
-            arr[i] = 0;
+            arr[i] = 2;
         }
+    }
+
+    static int [] medianOfToSortedArray(int [] arr1, int [] arr2){
+
+        int i = 0, j = 0, k = 0;
+
+        int n = arr1.length, m = arr2.length;
+
+        int [] result = new int [m+n];
+
+        while (i<n && j < m){
+            if (arr1[i]<arr2[j]) {
+                result[k++] = arr1[i++];
+            }else {
+                result[k++] = arr2[j++];
+            }
+        }
+
+        while (i < n){
+            result [k++] = arr1[i++];
+        }
+        while (j < m){
+            result[k++] = arr2[j++];
+        }
+        
+        return result;
     }
 }
