@@ -425,7 +425,7 @@ public class ArrayPractice {
         while (j < m){
             result[k++] = arr2[j++];
         }
-        
+
         return result;
     }
 }
