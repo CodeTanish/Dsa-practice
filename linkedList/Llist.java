@@ -1,25 +1,26 @@
-public class LinkedList {
+class CustomLinkedList {
 
     static Node head;
 
-    static class Node{
+    static class Node {
         int data;
         Node next;
 
-        Node(){
-            this.data = null;
+        Node() {
+            this.data = 0;
             this.next = null;
         }
-        Node(int val){
+
+        Node(int val) {
             this.data = val;
             this.next = null;
         }
     }
 
-    public void append (int data){
+    public void append(int data) {
         Node newNode = new Node(data);
-        if (head == null){
-            head == newNode;
+        if (head == null) {
+            head = newNode; // Corrected assignment
             return;
         }
 
@@ -41,14 +42,14 @@ public class LinkedList {
     }
 }
 
-class Llist {
+public class Llist {
     public static void main(String[] args) {
-        LinkedList list = new LinkedList();
+        CustomLinkedList list = new CustomLinkedList();
 
         list.append(10);
         list.append(20);
         list.append(30);
 
-        list.printList();
+        list.printList(); // Output: 10 -> 20 -> 30 -> null
     }
 }
