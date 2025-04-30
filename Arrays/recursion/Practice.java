@@ -6,6 +6,18 @@ class practice {
         longestSubArraySum(arr, target, 0, 0, 0);
     }
 
+    static int search(int [] arr, int target, int start, int end){
+        int mid = (start + end)/2;
+        
+        if(start > end) {
+            return -1;
+        }
+
+        if (arr[mid] > target) {
+            return search(arr, target, start, mid - 1);
+        }else return search(arr, target, mid + 1, end);
+    }
+
     static int longestSubArraySum(int[] arr, int target, int index, int sum, int length) {
         if (index == arr.length) {
             return (sum == target) ? length : 0;
