@@ -15,7 +15,8 @@ class practice {
 
         if (arr[mid] > target) {
             return search(arr, target, start, mid - 1);
-        }else return search(arr, target, mid + 1, end);
+        }
+        else return search(arr, target, mid + 1, end);
     }
 
     static int longestSubArraySum(int[] arr, int target, int index, int sum, int length) {
