@@ -19,4 +19,31 @@ public class Search {
         }
         return (arr[mid] == target) ? mid : -1;
     }
+
+    static int lowwerBound(int [] arr, int target){
+        int start = 0, end = arr.length-1, mid = 0;
+ 
+        while (start <= end){
+            mid = start + (end - start)/2;
+
+            if (arr[mid] > target) end = mid - 1;
+            else start = mid + 1;
+        }
+
+        return (arr[mid] >= target) ? mid : -1;
+    }
+
+    static int upperBound(int [] arr, int target){
+        
+        int start = 0, end = arr.length-1, mid = 0;
+ 
+        while (start <= end){
+            mid = start + (end - start)/2;
+
+            if (arr[mid] > target) end = mid;
+            else start = mid + 1;
+        }
+
+        return start;
+    }
 }
